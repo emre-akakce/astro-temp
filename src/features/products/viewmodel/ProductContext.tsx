@@ -1,7 +1,7 @@
 // src/features/products/viewmodel/ProductContext.tsx
 import React, { createContext, useReducer, useContext, type ReactNode,  } from 'react';
 import { productReducer, type ProductState, type ProductAction } from './productReducer';
-import { getInitialCount, initialProducts } from '../model/productService';
+import { getInitialCount, type Filter } from '../model/productService';
 
 interface ProductContextType {
   state: ProductState;
@@ -17,8 +17,12 @@ interface ProductProviderProps {
 export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) => {
   const initialState: ProductState = {
     count: getInitialCount(),
-    products: initialProducts,
+    products: [], // Products will be fetched dynamically
     filter: '',
+    availableFilters: [],
+    selectedFilter: '',
+    productsLoading: false,
+    filtersLoading: false,
   };
   const [state, dispatch] = useReducer(productReducer, initialState);
 
