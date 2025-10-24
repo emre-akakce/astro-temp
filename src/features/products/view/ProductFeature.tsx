@@ -1,12 +1,14 @@
 // src/features/products/view/ProductFeature.tsx
 import React from 'react';
 import { ProductProvider } from '../viewmodel/ProductContext';
-import Counter from './Counter';
+import ProductList from './ProductList';
+import FilterComponent from './FilterComponent';
 
 const ProductFeature: React.FC = () => {
   return (
     <ProductProvider>
-      <Counter />
+      <FilterComponent />
+      <ProductList />
     </ProductProvider>
   );
 };
