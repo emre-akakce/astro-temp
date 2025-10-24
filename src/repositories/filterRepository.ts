@@ -2,7 +2,7 @@
 import type { Filter } from '../model/filter';
 
 const mockFilters: Filter[] = [
-  { id: 'all', name: 'All', value: '' },
+  { id: 'all', name: 'All', value: 'all' },
   { id: 'electronics', name: 'Electronics', value: 'electronics' },
   { id: 'furniture', name: 'Furniture', value: 'furniture' },
 ];

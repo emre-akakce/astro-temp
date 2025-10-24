@@ -12,14 +12,10 @@ const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 interface ProductProviderProps {
   children: ReactNode;
+  initialState?: ProductState;
 }
 
-export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) => {
-  const initialState: ProductState = {
-    count: 0,
-    products: [], // Products will be fetched dynamically
-    productsLoading: false,
-  };
+export const ProductProvider: React.FC<ProductProviderProps> = ({ children, initialState }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
 
   return (

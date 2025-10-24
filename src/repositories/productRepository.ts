@@ -1,7 +1,7 @@
 // src/repositories/productRepository.ts
 import type { Product } from '../model/product';
 
-const allProducts: Product[] = [
+export const allProducts: Product[] = [
   { id: '1', name: 'Laptop', category: 'Electronics' },
   { id: '2', name: 'Mouse', category: 'Electronics' },
   { id: '3', name: 'Keyboard', category: 'Electronics' },
@@ -14,7 +14,7 @@ const allProducts: Product[] = [
 export const getProducts = async (filterValue: string): Promise<Product[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      if (!filterValue) {
+      if (!filterValue || filterValue === 'all') {
         resolve(allProducts);
       } else {
         const lowerCaseFilter = filterValue.toLowerCase();

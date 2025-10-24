@@ -2,7 +2,7 @@
 import { useProductContext } from './ProductContext';
 import { useFilterViewModel } from '../filter/useFilterViewModel';
 import { getProducts } from '../../repositories/productRepository';
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useRef } from 'react';
 import {
   increment as incrementAction,
   decrement as decrementAction,
@@ -36,7 +36,7 @@ export const useProductViewModel = () => {
       }
     };
 
-    if (selectedFilter !== undefined) { // Only fetch if a filter is selected
+    if (selectedFilter) { // Only fetch if a filter is selected
       fetchProducts();
     }
   }, [selectedFilter, dispatch]); // Depend on selectedFilter from the filter viewmodel

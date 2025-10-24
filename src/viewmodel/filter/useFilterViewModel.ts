@@ -22,10 +22,6 @@ export const useFilterViewModel = () => {
       try {
         const filters = await getFilters();
         dispatch(setAvailableFiltersAction(filters));
-        // Set initial selected filter to 'all' or the first available filter
-        if (filters.length > 0) {
-          dispatch(setSelectedFilterAction(filters[0].value));
-        }
       } catch (error) {
         console.error('Failed to fetch filters:', error);
       } finally {
