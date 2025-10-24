@@ -1,6 +1,17 @@
 // src/features/products/viewmodel/productReducer.ts
 import type { Product, Filter } from '../model/productService';
-import type { ProductAction } from './productActions';
+import {
+  INCREMENT,
+  DECREMENT,
+  SET_COUNT,
+  SET_FILTER,
+  SET_AVAILABLE_FILTERS,
+  SET_SELECTED_FILTER,
+  SET_PRODUCTS_LOADING,
+  SET_FILTERS_LOADING,
+  SET_PRODUCTS,
+  type ProductAction,
+} from './productActions';
 
 export type ProductState = {
   count: number;
@@ -14,23 +25,23 @@ export type ProductState = {
 
 export const productReducer = (state: ProductState, action: ProductAction): ProductState => {
   switch (action.type) {
-    case 'INCREMENT':
+    case INCREMENT:
       return { ...state, count: state.count + 1 };
-    case 'DECREMENT':
+    case DECREMENT:
       return { ...state, count: state.count - 1 };
-    case 'SET_COUNT':
+    case SET_COUNT:
       return { ...state, count: action.payload };
-    case 'SET_FILTER': // This action now sets the selected filter value
+    case SET_FILTER: // This action now sets the selected filter value
       return { ...state, selectedFilter: action.payload };
-    case 'SET_AVAILABLE_FILTERS':
+    case SET_AVAILABLE_FILTERS:
       return { ...state, availableFilters: action.payload };
-    case 'SET_SELECTED_FILTER':
+    case SET_SELECTED_FILTER:
       return { ...state, selectedFilter: action.payload };
-    case 'SET_PRODUCTS_LOADING':
+    case SET_PRODUCTS_LOADING:
       return { ...state, productsLoading: action.payload };
-    case 'SET_FILTERS_LOADING':
+    case SET_FILTERS_LOADING:
       return { ...state, filtersLoading: action.payload };
-    case 'SET_PRODUCTS':
+    case SET_PRODUCTS:
       return { ...state, products: action.payload };
     default:
       return state;
