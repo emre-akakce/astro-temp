@@ -1,5 +1,5 @@
-// src/features/products/viewmodel/filterActions.ts
-import type { Filter } from '../model/productService';
+// src/features/products/viewmodel/filter/filterActions.ts
+import type { Filter } from '../../model/productService';
 
 // Action Type Constants
 export const SET_AVAILABLE_FILTERS = 'SET_AVAILABLE_FILTERS';

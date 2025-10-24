@@ -1,7 +1,7 @@
 // src/features/products/view/ProductFeature.tsx
 import React from 'react';
 import { ProductProvider } from '../viewmodel/ProductContext';
-import { FilterProvider } from '../viewmodel/FilterContext'; // Import FilterProvider
+import { FilterProvider } from '../viewmodel/filter/FilterContext'; // Updated import path
 import ProductList from './ProductList';
 import FilterComponent from './FilterComponent';
 

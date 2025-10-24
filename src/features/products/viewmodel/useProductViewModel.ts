@@ -1,6 +1,6 @@
 // src/features/products/viewmodel/useProductViewModel.ts
 import { useProductContext } from './ProductContext';
-import { useFilterViewModel } from './useFilterViewModel'; // Import the new filter viewmodel
+import { useFilterViewModel } from './filter/useFilterViewModel'; // Updated import path
 import { saveCount, getProducts, type Product } from '../model/productService';
 import { useEffect, useCallback } from 'react';
 import {
