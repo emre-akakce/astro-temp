@@ -27,28 +27,29 @@ src/
 ├── features/            // Feature Modules: MVVM implementation for distinct domains
 │   └── products/
 │       ├── view/        // View Layer: Feature-specific smart/container components (Bind to ViewModel)
-│       │   ├── ProductPageContainer.jsx // Wraps context providers
-│       │   ├── FilterComponent.jsx      // Calls ViewModel commands
-│       │   ├── ProductList.jsx          // Renders data from ViewModel
-│       │   └── SpotlightArea.jsx        // Renders data from ViewModel
+│       │   ├── ProductPageContainer.tsx // Wraps context providers
+│       │   ├── FilterComponent.tsx      // Calls ViewModel commands
+│       │   ├── ProductList.tsx          // Renders data from ViewModel
+│       │   └── SpotlightArea.tsx        // Renders data from ViewModel
 │       |
 │       ├── viewmodel/   // ViewModel Layer: State, Logic, and Commands (The Context/Reducer core)
-│       │   ├── productActions.js      // Action creators and type definitions for products
-│       │   ├── productReducer.js      // State transition logic (The Reducer) for products
-│       │   ├── ProductContext.jsx     // The Context Provider setup for products
-│       │   ├── useProductViewModel.js // The single custom hook used by all View components for products
+│       │   ├── product/                // Sub-directory for product-related ViewModel logic
+│       │   │   ├── productActions.ts      // Action creators and type definitions for products
+│       │   │   ├── productReducer.ts      // State transition logic (The Reducer) for products
+│       │   │   ├── ProductContext.tsx     // The Context Provider setup for products
+│       │   │   └── useProductViewModel.ts // The single custom hook used by all View components for products
 │       │   └── filter/                // Sub-directory for filter-related ViewModel logic
-│       │       ├── filterActions.js   // Action creators and type definitions for filters
-│       │       ├── filterReducer.js   // State transition logic (The Reducer) for filters
-│       │       ├── FilterContext.jsx  // The Context Provider setup for filters
-│       │       └── useFilterViewModel.js // The custom hook for filter-related View components
+│       │       ├── filterActions.ts   // Action creators and type definitions for filters
+│       │       ├── filterReducer.ts   // State transition logic (The Reducer) for filters
+│       │       ├── FilterContext.tsx  // The Context Provider setup for filters
+│       │       └── useFilterViewModel.ts // The custom hook for filter-related View components
 │       |
 │       └── model/       // Model Layer: Data access and business logic
-│           └── productService.js    // API calls, data transformation, validation, filtering logic
+│           └── productService.ts    // API calls, data transformation, validation, filtering logic
 │
 ├── services/            // Global/Shared Model Layer (e.g., Auth, Global API Client)
-│   ├── authService.js
-│   └── apiBase.js
+│   ├── authService.ts
+│   └── apiBase.ts
 │
 ├── pages/               // Astro Pages (Composers)
 ├── layouts/             // Astro Layouts
