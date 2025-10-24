@@ -35,6 +35,7 @@ src/
 │       ├── viewmodel/   // ViewModel Layer: State, Logic, and Commands (The Context/Reducer core)
 │       │   ├── useProductViewModel.js // The single custom hook used by all View components
 │       │   ├── productReducer.js      // State transition logic (The Reducer)
+│       │   ├── productActions.js      // Action creators and type definitions
 │       │   └── ProductContext.jsx     // The Context Provider setup
 │       |
 │       └── model/       // Model Layer: Data access and business logic
@@ -57,7 +58,7 @@ src/
 
 -   **`features/`**: This is where individual feature modules reside. Each sub-directory within `features/` represents a distinct domain and encapsulates its MVVM implementation.
     -   **`view/`**: Contains feature-specific smart/container React components. These components interact with the ViewModel, binding to its data and invoking its commands.
-    -   **`viewmodel/`**: Houses the ViewModel layer for the feature. This typically includes a custom hook (e.g., `useProductViewModel`) that provides state, logic, and commands to the `view` components, a reducer for complex state transitions (`productReducer`), and the Context Provider setup (`ProductContext`).
+    -   **`viewmodel/`**: Houses the ViewModel layer for the feature. This typically includes a custom hook (e.g., `useProductViewModel`) that provides state, logic, and commands to the `view` components, a reducer for complex state transitions (`productReducer`), action creators and type definitions (`productActions.js`), and the Context Provider setup (`ProductContext`).
     -   **`model/`**: Contains the Model layer for the feature, including data access logic (e.g., `productService`), data transformation, validation, and business rules.
 
 -   **`services/`**: This directory is for global or shared Model layer concerns that are not tied to a specific feature, such as authentication (`authService`) or a base API client (`apiBase.js`).

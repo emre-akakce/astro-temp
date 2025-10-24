@@ -1,38 +1,47 @@
 // src/features/products/viewmodel/useProductViewModel.ts
 import { useProductContext } from './ProductContext';
 import { saveCount, getFilters, getProducts, type Product } from '../model/productService';
-import { useEffect, useMemo, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
+import {
+  increment as incrementAction,
+  decrement as decrementAction,
+  setSelectedFilter as setSelectedFilterAction,
+  setAvailableFilters as setAvailableFiltersAction,
+  setProductsLoading as setProductsLoadingAction,
+  setFiltersLoading as setFiltersLoadingAction,
+  setProducts as setProductsAction,
+} from './productActions';
 
 export const useProductViewModel = () => {
   const { state, dispatch } = useProductContext();
 
   const increment = () => {
-    dispatch({ type: 'INCREMENT' });
+    dispatch(incrementAction());
   };
 
   const decrement = () => {
-    dispatch({ type: 'DECREMENT' });
+    dispatch(decrementAction());
   };
 
   const setSelectedFilter = useCallback((filterValue: string) => {
-    dispatch({ type: 'SET_SELECTED_FILTER', payload: filterValue });
+    dispatch(setSelectedFilterAction(filterValue));
   }, [dispatch]);
 
   // Fetch available filters on mount
   useEffect(() => {
     const fetchFilters = async () => {
-      dispatch({ type: 'SET_FILTERS_LOADING', payload: true });
+      dispatch(setFiltersLoadingAction(true));
       try {
         const filters = await getFilters();
-        dispatch({ type: 'SET_AVAILABLE_FILTERS', payload: filters });
+        dispatch(setAvailableFiltersAction(filters));
         // Set initial selected filter to 'all' or the first available filter
         if (filters.length > 0) {
-          dispatch({ type: 'SET_SELECTED_FILTER', payload: filters[0].value });
+          dispatch(setSelectedFilterAction(filters[0].value));
         }
       } catch (error) {
         console.error('Failed to fetch filters:', error);
       } finally {
-        dispatch({ type: 'SET_FILTERS_LOADING', payload: false });
+        dispatch(setFiltersLoadingAction(false));
       }
     };
     fetchFilters();
@@ -41,14 +50,14 @@ export const useProductViewModel = () => {
   // Fetch products whenever the selected filter changes
   useEffect(() => {
     const fetchProducts = async () => {
-      dispatch({ type: 'SET_PRODUCTS_LOADING', payload: true });
+      dispatch(setProductsLoadingAction(true));
       try {
         const products = await getProducts(state.selectedFilter);
-        dispatch({ type: 'SET_PRODUCTS', payload: products });
+        dispatch(setProductsAction(products));
       } catch (error) {
         console.error('Failed to fetch products:', error);
       } finally {
-        dispatch({ type: 'SET_PRODUCTS_LOADING', payload: false });
+        dispatch(setProductsLoadingAction(false));
       }
     };
 

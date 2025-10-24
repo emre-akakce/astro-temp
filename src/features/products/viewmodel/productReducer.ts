@@ -1,5 +1,6 @@
 // src/features/products/viewmodel/productReducer.ts
 import type { Product, Filter } from '../model/productService';
+import type { ProductAction } from './productActions';
 
 export type ProductState = {
   count: number;
@@ -10,17 +11,6 @@ export type ProductState = {
   productsLoading: boolean;
   filtersLoading: boolean;
 };
-
-export type ProductAction = 
-  | { type: 'INCREMENT' }
-  | { type: 'DECREMENT' }
-  | { type: 'SET_COUNT'; payload: number }
-  | { type: 'SET_FILTER'; payload: string } // This will set the selected filter value
-  | { type: 'SET_AVAILABLE_FILTERS'; payload: Filter[] }
-  | { type: 'SET_SELECTED_FILTER'; payload: string }
-  | { type: 'SET_PRODUCTS_LOADING'; payload: boolean }
-  | { type: 'SET_FILTERS_LOADING'; payload: boolean }
-  | { type: 'SET_PRODUCTS'; payload: Product[] };
 
 export const productReducer = (state: ProductState, action: ProductAction): ProductState => {
   switch (action.type) {
