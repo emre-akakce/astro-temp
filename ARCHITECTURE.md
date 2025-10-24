@@ -24,30 +24,28 @@ src/
 │   ├── ui/              // Generic, framework-agnostic UI elements (Button, Modal, Card)
 │   └── shared/          // Application-wide layout pieces (Header, Footer, MainLayout)
 |
-├── features/            // Feature Modules: MVVM implementation for distinct domains
-│   └── products/
-│       ├── view/        // View Layer: Feature-specific smart/container components (Bind to ViewModel)
-│       │   ├── ProductFeature.tsx     // Wraps context providers and orchestrates other view components
-│       │   ├── product/
-│       │   │   └── ProductList.tsx          // Renders data from ViewModel
-│       │   └── filter/
-│       │       └── FilterComponent.tsx      // Calls ViewModel commands
-│       |
-│       ├── viewmodel/   // ViewModel Layer: State, Logic, and Commands (The Context/Reducer core)
-│       │   ├── product/                // Sub-directory for product-related ViewModel logic
-│       │   │   ├── productActions.ts      // Action creators and type definitions for products
-│       │   │   ├── productReducer.ts      // State transition logic (The Reducer) for products
-│       │   │   ├── ProductContext.tsx     // The Context Provider setup for products
-│       │   │   └── useProductViewModel.ts // The single custom hook used by all View components for products
-│       │   └── filter/                // Sub-directory for filter-related ViewModel logic
-│       │       ├── filterActions.ts   // Action creators and type definitions for filters
-│       │       ├── filterReducer.ts   // State transition logic (The Reducer) for filters
-│       │       ├── FilterContext.tsx  // The Context Provider setup for filters
-│       │       └── useFilterViewModel.ts // The custom hook for filter-related View components
-│       |
-│       └── model/       // Model Layer: Data access and business logic
-│           └── productService.ts    // API calls, data transformation, validation, filtering logic
-│
+├── view/                // View Layer: Feature-specific smart/container components (Bind to ViewModel)
+│   ├── ProductWithFilter.tsx // Wraps context providers and orchestrates other view components
+│   ├── product/
+│   │   └── ProductList.tsx          // Renders data from ViewModel
+│   └── filter/
+│       └── FilterComponent.tsx      // Calls ViewModel commands
+|
+├── viewmodel/           // ViewModel Layer: State, Logic, and Commands (The Context/Reducer core)
+│   ├── product/                // Sub-directory for product-related ViewModel logic
+│   │   ├── productActions.ts      // Action creators and type definitions for products
+│   │   ├── productReducer.ts      // State transition logic (The Reducer) for products
+│   │   ├── ProductContext.tsx     // The Context Provider setup for products
+│   │   └── useProductViewModel.ts // The single custom hook used by all View components for products
+│   └── filter/                // Sub-directory for filter-related ViewModel logic
+│       ├── filterActions.ts   // Action creators and type definitions for filters
+│       ├── filterReducer.ts   // State transition logic (The Reducer) for filters
+│       ├── FilterContext.tsx  // The Context Provider setup for filters
+│       └── useFilterViewModel.ts // The custom hook for filter-related View components
+|
+├── model/               // Model Layer: Data access and business logic
+│   └── productService.ts    // API calls, data transformation, validation, filtering logic
+|
 ├── services/            // Global/Shared Model Layer (e.g., Auth, Global API Client)
 │   ├── authService.ts
 │   └── apiBase.ts
@@ -63,20 +61,24 @@ src/
     -   **`ui/`**: For generic, framework-agnostic UI elements (e.g., Button, Modal, Card).
     -   **`shared/`**: For application-wide layout pieces (e.g., Header, Footer, MainLayout).
 
--   **`features/`**: This is where individual feature modules reside. Each sub-directory within `features/` represents a distinct domain and encapsulates its MVVM implementation.
-    -   **`view/`**: Contains feature-specific smart/container React components. These components interact with the ViewModel, binding to its data and invoking its commands.
-    -   **`viewmodel/`**: Houses the ViewModel layer for the feature. This typically includes:
-        -   **`product/`**: A sub-directory specifically for product-related ViewModel logic, containing:
-            -   `productActions.ts`: Action creators and type definitions specifically for product-related state.
-            -   `productReducer.ts`: The reducer for managing product-related state transitions.
-            -   `ProductContext.tsx`: The React Context Provider for product-related state.
-            -   `useProductViewModel.ts`: The custom hook that provides product-related state and actions to View components.
-        -   **`filter/`**: A sub-directory specifically for filter-related ViewModel logic, containing:
-            -   `filterActions.ts`: Action creators and type definitions for filter-related state.
-            -   `filterReducer.ts`: The reducer for managing filter-related state transitions.
-            -   `FilterContext.tsx`: The React Context Provider for filter-related state.
-            -   `useFilterViewModel.ts`: The custom hook that provides filter-related state and actions to View components.
-    -   **`model/`**: Contains the Model layer for the feature, including data access logic (e.g., `productService`), data transformation, validation, and business rules.
+-   **`view/`**: Contains feature-specific smart/container React components. These components interact with the ViewModel, binding to its data and invoking its commands.
+    -   `ProductWithFilter.tsx`: The main wrapper component for the product and filter views.
+    -   **`product/`**: Contains view components related to products.
+    -   **`filter/`**: Contains view components related to filters.
+
+-   **`viewmodel/`**: Houses the ViewModel layer for the feature. This typically includes:
+    -   **`product/`**: A sub-directory specifically for product-related ViewModel logic, containing:
+        -   `productActions.ts`: Action creators and type definitions specifically for product-related state.
+        -   `productReducer.ts`: The reducer for managing product-related state transitions.
+        -   `ProductContext.tsx`: The React Context Provider for product-related state.
+        -   `useProductViewModel.ts`: The custom hook that provides product-related state and actions to View components.
+    -   **`filter/`**: A sub-directory specifically for filter-related ViewModel logic, containing:
+        -   `filterActions.ts`: Action creators and type definitions for filter-related state.
+        -   `filterReducer.ts`: The reducer for managing filter-related state transitions.
+        -   `FilterContext.tsx`: The React Context Provider for filter-related state.
+        -   `useFilterViewModel.ts`: The custom hook that provides filter-related state and actions to View components.
+
+-   **`model/`**: Contains the Model layer for the feature, including data access logic (e.g., `productService.ts`), data transformation, validation, and business rules.
 
 -   **`services/`**: This directory is for global or shared Model layer concerns that are not tied to a specific feature, such as authentication (`authService.ts`) or a base API client (`apiBase.ts`).
 

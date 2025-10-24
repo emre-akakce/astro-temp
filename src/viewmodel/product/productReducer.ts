@@ -1,4 +1,4 @@
-// src/features/products/viewmodel/product/productReducer.ts
+// src/viewmodel/product/productReducer.ts
 import type { Product } from '../../model/productService';
 import {
   INCREMENT,

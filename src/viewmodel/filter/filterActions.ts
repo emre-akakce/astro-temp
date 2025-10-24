@@ -1,4 +1,4 @@
-// src/features/products/viewmodel/filter/filterActions.ts
+// src/viewmodel/filter/filterActions.ts
 import type { Filter } from '../../model/productService';
 
 // Action Type Constants

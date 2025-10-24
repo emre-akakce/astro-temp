@@ -1,4 +1,4 @@
-// src/features/products/view/FilterComponent.tsx
+// src/view/filter/FilterComponent.tsx
 import React from 'react';
 import { useFilterViewModel } from '../../viewmodel/filter/useFilterViewModel';
 import type { Filter } from '../../model/productService';

@@ -1,4 +1,4 @@
-// src/features/products/viewmodel/filter/useFilterViewModel.ts
+// src/viewmodel/filter/useFilterViewModel.ts
 import { useFilterContext } from './FilterContext';
 import { getFilters, type Filter } from '../../model/productService'; // Updated import path
 import { useEffect, useCallback } from 'react';

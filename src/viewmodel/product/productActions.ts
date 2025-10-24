@@ -1,4 +1,4 @@
-// src/features/products/viewmodel/product/productActions.ts
+// src/viewmodel/product/productActions.ts
 import type { Product } from '../../model/productService';
 
 // Action Type Constants
