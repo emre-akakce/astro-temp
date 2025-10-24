@@ -1,7 +1,7 @@
-// src/features/products/viewmodel/ProductContext.tsx
+// src/features/products/viewmodel/product/ProductContext.tsx
 import React, { createContext, useReducer, useContext, type ReactNode,  } from 'react';
 import { productReducer, type ProductState } from './productReducer';
-import { getInitialCount } from '../model/productService';
+import { getInitialCount } from '../../model/productService';
 import type { ProductAction } from './productActions';
 
 interface ProductContextType {

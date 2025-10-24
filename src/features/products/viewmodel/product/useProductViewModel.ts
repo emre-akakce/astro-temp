@@ -1,7 +1,7 @@
-// src/features/products/viewmodel/useProductViewModel.ts
+// src/features/products/viewmodel/product/useProductViewModel.ts
 import { useProductContext } from './ProductContext';
-import { useFilterViewModel } from './filter/useFilterViewModel'; // Updated import path
-import { saveCount, getProducts, type Product } from '../model/productService';
+import { useFilterViewModel } from '../filter/useFilterViewModel'; // Updated import path
+import { saveCount, getProducts, type Product } from '../../model/productService';
 import { useEffect, useCallback } from 'react';
 import {
   increment as incrementAction,

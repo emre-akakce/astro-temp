@@ -1,6 +1,7 @@
 // src/features/products/view/ProductList.tsx
 import React from 'react';
-import { useProductViewModel } from '../viewmodel/useProductViewModel';
+import { useProductViewModel } from '../viewmodel/product/useProductViewModel';
+import type { Product } from '../model/productService';
 
 const ProductList: React.FC = () => {
   const { count, increment, decrement, products, productsLoading } = useProductViewModel();
@@ -19,7 +20,7 @@ const ProductList: React.FC = () => {
         <p>No products found for the selected filter.</p>
       ) : (
         <ul>
-          {products.map(product => (
+          {products.map((product: Product) => (
             <li key={product.id}>{product.name} ({product.category})</li>
           ))}
         </ul>

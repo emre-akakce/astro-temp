@@ -1,4 +1,4 @@
-// src/features/products/viewmodel/FilterContext.tsx
+// src/features/products/viewmodel/filter/FilterContext.tsx
 import React, { createContext, useReducer, useContext, type ReactNode } from 'react';
 import { filterReducer, type FilterState } from './filterReducer';
 import type { FilterAction } from './filterActions';
