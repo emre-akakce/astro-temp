@@ -1,5 +1,5 @@
 // src/viewmodel/filter/filterReducer.ts
-import type { Filter } from '../../model/productService'; // Updated import path
+import type { Filter } from '../../model/product';
 import { SET_AVAILABLE_FILTERS, SET_SELECTED_FILTER, SET_FILTERS_LOADING, type FilterAction } from './filterActions';
 
 export type FilterState = {

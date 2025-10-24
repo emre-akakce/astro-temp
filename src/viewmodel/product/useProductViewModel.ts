@@ -1,7 +1,7 @@
 // src/viewmodel/product/useProductViewModel.ts
 import { useProductContext } from './ProductContext';
-import { useFilterViewModel } from '../filter/useFilterViewModel'; // Updated import path
-import { saveCount, getProducts, type Product } from '../../model/productService';
+import { useFilterViewModel } from '../filter/useFilterViewModel';
+import { getProducts } from '../../repositories/productRepository';
 import { useEffect, useCallback } from 'react';
 import {
   increment as incrementAction,
@@ -44,7 +44,7 @@ export const useProductViewModel = () => {
 
   // Effect to save count whenever it changes
   useEffect(() => {
-    saveCount(state.count);
+    console.log('Count changed:', state.count);
   }, [state.count]);
 
   return {

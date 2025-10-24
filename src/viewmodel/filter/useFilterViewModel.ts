@@ -1,6 +1,6 @@
 // src/viewmodel/filter/useFilterViewModel.ts
 import { useFilterContext } from './FilterContext';
-import { getFilters, type Filter } from '../../model/productService'; // Updated import path
+import { getFilters } from '../../repositories/filterRepository';
 import { useEffect, useCallback } from 'react';
 import {
   setAvailableFilters as setAvailableFiltersAction,

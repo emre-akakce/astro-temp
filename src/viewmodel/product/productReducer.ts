@@ -1,5 +1,5 @@
 // src/viewmodel/product/productReducer.ts
-import type { Product } from '../../model/productService';
+import type { Product } from '../../model/product';
 import {
   INCREMENT,
   DECREMENT,

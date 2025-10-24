@@ -1,5 +1,5 @@
 // src/viewmodel/product/productActions.ts
-import type { Product } from '../../model/productService';
+import type { Product } from '../../model/product';
 
 // Action Type Constants
 export const INCREMENT = 'INCREMENT';

@@ -1,7 +1,7 @@
 // src/view/product/ProductList.tsx
 import React from 'react';
 import { useProductViewModel } from '../../viewmodel/product/useProductViewModel';
-import type { Product } from '../../model/productService';
+import type { Product } from '../../model/product';
 
 const ProductList: React.FC = () => {
   const { count, increment, decrement, products, productsLoading } = useProductViewModel();

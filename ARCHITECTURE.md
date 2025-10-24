@@ -43,8 +43,12 @@ src/
 │       ├── FilterContext.tsx  // The Context Provider setup for filters
 │       └── useFilterViewModel.ts // The custom hook for filter-related View components
 |
-├── model/               // Model Layer: Data access and business logic
-│   └── productService.ts    // API calls, data transformation, validation, filtering logic
+├── model/               // Model Layer: Data interfaces and core business logic (e.g., Product, Filter interfaces, getInitialCount, saveCount)
+│   └── product.ts
+|
+├── repositories/        // Data Access Layer: Handles API calls and data persistence
+│   ├── filterRepository.ts  // Provides filter-related data (e.g., getFilters)
+│   └── productRepository.ts // Provides product-related data (e.g., getProducts)
 |
 ├── services/            // Global/Shared Model Layer (e.g., Auth, Global API Client)
 │   ├── authService.ts
@@ -78,7 +82,11 @@ src/
         -   `FilterContext.tsx`: The React Context Provider for filter-related state.
         -   `useFilterViewModel.ts`: The custom hook that provides filter-related state and actions to View components.
 
--   **`model/`**: Contains the Model layer for the feature, including data access logic (e.g., `productService.ts`), data transformation, validation, and business rules.
+-   **`model/`**: Contains the core data interfaces (e.g., `Product`, `Filter`) and basic business logic not tied to data fetching (e.g., `getInitialCount`, `saveCount`).
+
+-   **`repositories/`**: This directory acts as the data access layer, abstracting away the details of data fetching and persistence. It contains modules responsible for making API calls or interacting with data sources.
+    -   `filterRepository.ts`: Provides functions for fetching filter-related data.
+    -   `productRepository.ts`: Provides functions for fetching product-related data.
 
 -   **`services/`**: This directory is for global or shared Model layer concerns that are not tied to a specific feature, such as authentication (`authService.ts`) or a base API client (`apiBase.ts`).
 

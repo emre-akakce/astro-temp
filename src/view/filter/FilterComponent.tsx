@@ -1,7 +1,7 @@
 // src/view/filter/FilterComponent.tsx
 import React from 'react';
 import { useFilterViewModel } from '../../viewmodel/filter/useFilterViewModel';
-import type { Filter } from '../../model/productService';
+import type { Filter } from '../../model/filter';
 
 const FilterComponent: React.FC = () => {
   const { availableFilters, selectedFilter, setSelectedFilter, filtersLoading } = useFilterViewModel();
