@@ -23,8 +23,8 @@ describe('useProductViewModel (Component Integration Simplified)', () => {
     const productInitialState = {
       count: 5,
       products: [
-        { id: 'p1', title: 'Product 1', price: 100 },
-        { id: 'p2', title: 'Product 2', price: 200 },
+        { id: 'p1', title: 'Product 1', name: 'Product 1', category: 'General', price: 100 },
+        { id: 'p2', title: 'Product 2', name: 'Product 2', category: 'General', price: 200 },
       ],
       productsLoading: true,
     };
