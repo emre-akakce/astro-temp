@@ -1,9 +1,9 @@
 // src/features/products/view/FilterComponent.tsx
 import React from 'react';
-import { useProductViewModel } from '../viewmodel/useProductViewModel';
+import { useFilterViewModel } from '../viewmodel/useFilterViewModel';
 
 const FilterComponent: React.FC = () => {
-  const { availableFilters, selectedFilter, setSelectedFilter, filtersLoading } = useProductViewModel();
+  const { availableFilters, selectedFilter, setSelectedFilter, filtersLoading } = useFilterViewModel();
 
   if (filtersLoading) {
     return <div style={{ marginBottom: '20px' }}>Loading filters...</div>;
