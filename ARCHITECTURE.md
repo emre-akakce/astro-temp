@@ -27,10 +27,11 @@ src/
 ├── features/            // Feature Modules: MVVM implementation for distinct domains
 │   └── products/
 │       ├── view/        // View Layer: Feature-specific smart/container components (Bind to ViewModel)
-│       │   ├── ProductPageContainer.tsx // Wraps context providers
-│       │   ├── FilterComponent.tsx      // Calls ViewModel commands
-│       │   ├── ProductList.tsx          // Renders data from ViewModel
-│       │   └── SpotlightArea.tsx        // Renders data from ViewModel
+│       │   ├── ProductFeature.tsx     // Wraps context providers and orchestrates other view components
+│       │   ├── product/
+│       │   │   └── ProductList.tsx          // Renders data from ViewModel
+│       │   └── filter/
+│       │       └── FilterComponent.tsx      // Calls ViewModel commands
 │       |
 │       ├── viewmodel/   // ViewModel Layer: State, Logic, and Commands (The Context/Reducer core)
 │       │   ├── product/                // Sub-directory for product-related ViewModel logic
@@ -65,18 +66,19 @@ src/
 -   **`features/`**: This is where individual feature modules reside. Each sub-directory within `features/` represents a distinct domain and encapsulates its MVVM implementation.
     -   **`view/`**: Contains feature-specific smart/container React components. These components interact with the ViewModel, binding to its data and invoking its commands.
     -   **`viewmodel/`**: Houses the ViewModel layer for the feature. This typically includes:
-        -   `productActions.js`: Action creators and type definitions specifically for product-related state.
-        -   `productReducer.js`: The reducer for managing product-related state transitions.
-        -   `ProductContext.jsx`: The React Context Provider for product-related state.
-        -   `useProductViewModel.js`: The custom hook that provides product-related state and actions to View components.
+        -   **`product/`**: A sub-directory specifically for product-related ViewModel logic, containing:
+            -   `productActions.ts`: Action creators and type definitions specifically for product-related state.
+            -   `productReducer.ts`: The reducer for managing product-related state transitions.
+            -   `ProductContext.tsx`: The React Context Provider for product-related state.
+            -   `useProductViewModel.ts`: The custom hook that provides product-related state and actions to View components.
         -   **`filter/`**: A sub-directory specifically for filter-related ViewModel logic, containing:
-            -   `filterActions.js`: Action creators and type definitions for filter-related state.
-            -   `filterReducer.js`: The reducer for managing filter-related state transitions.
-            -   `FilterContext.jsx`: The React Context Provider for filter-related state.
-            -   `useFilterViewModel.js`: The custom hook that provides filter-related state and actions to View components.
+            -   `filterActions.ts`: Action creators and type definitions for filter-related state.
+            -   `filterReducer.ts`: The reducer for managing filter-related state transitions.
+            -   `FilterContext.tsx`: The React Context Provider for filter-related state.
+            -   `useFilterViewModel.ts`: The custom hook that provides filter-related state and actions to View components.
     -   **`model/`**: Contains the Model layer for the feature, including data access logic (e.g., `productService`), data transformation, validation, and business rules.
 
--   **`services/`**: This directory is for global or shared Model layer concerns that are not tied to a specific feature, such as authentication (`authService`) or a base API client (`apiBase.js`).
+-   **`services/`**: This directory is for global or shared Model layer concerns that are not tied to a specific feature, such as authentication (`authService.ts`) or a base API client (`apiBase.ts`).
 
 -   **`pages/`**: Contains Astro `.astro` files. These serve as composers, integrating the various feature components and layouts to form the final web pages.
 

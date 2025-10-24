@@ -1,11 +1,10 @@
-// src/features/products/view/ProductFeature.tsx
 import React from 'react';
 import { ProductProvider } from '../viewmodel/product/ProductContext'; // Updated import path
 import { FilterProvider } from '../viewmodel/filter/FilterContext';
-import ProductList from './ProductList';
-import FilterComponent from './FilterComponent';
+import ProductList from './product/ProductList';
+import FilterComponent from './filter/FilterComponent';
 
-const ProductFeature: React.FC = () => {
+const ProductWithFilter: React.FC = () => {
   return (
     <FilterProvider>
       <ProductProvider>
@@ -16,4 +15,4 @@ const ProductFeature: React.FC = () => {
   );
 };
 
-export default ProductFeature;
+export default ProductWithFilter;

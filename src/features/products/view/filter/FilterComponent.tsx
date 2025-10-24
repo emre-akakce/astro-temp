@@ -1,6 +1,7 @@
 // src/features/products/view/FilterComponent.tsx
 import React from 'react';
-import { useFilterViewModel } from '../viewmodel/filter/useFilterViewModel'; // Updated import path
+import { useFilterViewModel } from '../../viewmodel/filter/useFilterViewModel';
+import type { Filter } from '../../model/productService';
 
 const FilterComponent: React.FC = () => {
   const { availableFilters, selectedFilter, setSelectedFilter, filtersLoading } = useFilterViewModel();
@@ -12,7 +13,7 @@ const FilterComponent: React.FC = () => {
   return (
     <div style={{ marginBottom: '20px' }}>
       <h3>Filter Products:</h3>
-      {availableFilters.map(filter => (
+      {availableFilters.map((filter: Filter) => (
         <button
           key={filter.id}
           onClick={() => setSelectedFilter(filter.value)}
