@@ -19,7 +19,7 @@ const LanguageView: React.FC = () => {
     }
   };
 
-  return <Suspense fallback={<div>Loading...</div>}>{renderView()}</Suspense>;
+  return <>{renderView()}</>
 };
 
 export default LanguageView;
