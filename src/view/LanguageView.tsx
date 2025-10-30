@@ -3,9 +3,9 @@ import { useLanguageViewModel } from '../viewmodel/language/useLanguageViewModel
 
 const LanguageView: React.FC = () => {
   const { getView } = useLanguageViewModel();
+  const ViewComponent = getView('sampleView');
 
   const renderView = () => {
-    const ViewComponent = getView();
     return (
       <>
         <ViewComponent />

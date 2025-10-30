@@ -12,8 +12,8 @@ export const useLanguageViewModel = () => {
 
   const { state, dispatch } = context;
 
-  const getView = () => {
-    const view = viewMap[state.language] || viewMap['generic'];
+  const getView = (viewName: string) => {
+    const view = viewMap(viewName, state.language);
     return view;
   }
 
