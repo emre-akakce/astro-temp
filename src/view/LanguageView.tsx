@@ -1,13 +1,11 @@
 import React from 'react';
 import { useLanguageViewModel } from '../viewmodel/language/useLanguageViewModel';
-import { viewMap } from './viewMap';
-
 
 const LanguageView: React.FC = () => {
-  const { language } = useLanguageViewModel();
+  const { getView } = useLanguageViewModel();
 
   const renderView = () => {
-    const ViewComponent = viewMap[language] || viewMap['generic'];
+    const ViewComponent = getView();
     return (
       <>
         <ViewComponent />

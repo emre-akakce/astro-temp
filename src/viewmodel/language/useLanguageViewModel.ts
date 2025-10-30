@@ -2,6 +2,7 @@
 import { useContext } from 'react';
 import { LanguageContext } from './LanguageContext';
 import { setLanguage } from './languageActions';
+import { viewMap } from 'src/services/viewMap';
 
 export const useLanguageViewModel = () => {
   const context = useContext(LanguageContext);
@@ -11,8 +12,14 @@ export const useLanguageViewModel = () => {
 
   const { state, dispatch } = context;
 
+  const getView = () => {
+    const view = viewMap[state.language] || viewMap['generic'];
+    return view;
+  }
+
   return {
     language: state.language,
+    getView,
     setLanguage: (language: string) => dispatch(setLanguage(language)),
   };
 };
