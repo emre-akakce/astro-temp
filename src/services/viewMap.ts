@@ -1,4 +1,3 @@
-// viewLoader.ts
 import React, { lazy, type ComponentType, type LazyExoticComponent } from "react";
 
 const LocalFallback: React.FC = () => null;
