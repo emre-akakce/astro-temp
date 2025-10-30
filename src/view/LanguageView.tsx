@@ -1,22 +1,18 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { useLanguageViewModel } from '../viewmodel/language/useLanguageViewModel';
+import { viewMap } from './viewMap';
 
-const ViewTr = lazy(() => import('./ViewTr'));
-const ViewUae = lazy(() => import('./ViewUae'));
-const ViewGeneric = lazy(() => import('./ViewGeneric'));
 
 const LanguageView: React.FC = () => {
   const { language } = useLanguageViewModel();
 
   const renderView = () => {
-    switch (language) {
-      case 'tr':
-        return <ViewTr />;
-      case 'uae':
-        return <ViewUae />;
-      default:
-        return <ViewGeneric />;
-    }
+    const ViewComponent = viewMap[language] || viewMap['generic'];
+    return (
+      <>
+        <ViewComponent />
+      </>
+    );
   };
 
   return <>{renderView()}</>
