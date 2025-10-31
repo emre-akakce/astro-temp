@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, ProductList } from '/Users/emrekardaslar/Desktop/Workspace/Self/component-library/dist/esm'
+import { Button, ProductList, Hpl} from '/Users/emrekardaslar/Desktop/Workspace/Self/component-library/dist/esm'
 function ComponentLibraryView() {
     const products = [
         { id: '1', name: 'Product A', price: 10.99 },
@@ -10,6 +10,7 @@ function ComponentLibraryView() {
     <>
         <Button label="Click" />
         <ProductList products={products} />
+        <Hpl/>
     </>
   )
 }
