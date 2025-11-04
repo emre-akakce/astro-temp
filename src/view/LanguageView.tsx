@@ -3,19 +3,15 @@ import { useLanguageViewModel } from '../viewmodel/language/useLanguageViewModel
 
 const LanguageView: React.FC = () => {
   const { getView } = useLanguageViewModel();
-  const ViewComponent = getView('sampleView');
-  const AnotherViewComponent = getView('anotherSampleView');
+  const FilterComponent = getView('filter');
+  const ProductListComponent = getView('product');
 
-  const renderView = () => {
-    return (
-      <>
-        <ViewComponent />
-        <AnotherViewComponent />
-      </>
-    );
-  };
-
-  return <>{renderView()}</>
+  return (
+    <>
+      <FilterComponent />
+      <ProductListComponent />
+    </>
+  );
 };
 
 export default LanguageView;

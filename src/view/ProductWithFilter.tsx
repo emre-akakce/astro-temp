@@ -1,8 +1,6 @@
 import React from 'react';
 import { ProductProvider } from '../viewmodel/product/ProductContext';
 import { FilterProvider } from '../viewmodel/filter/FilterContext';
-import ProductList from './product/ProductList';
-import FilterComponent from './filter/FilterComponent';
 import { allProducts } from 'src/repositories/productRepository';
 import { LanguageProvider } from '../viewmodel/language/LanguageContext';
 import LanguageView from './LanguageView';
@@ -33,8 +31,6 @@ const ProductWithFilter: React.FC = () => {
         <ProductProvider initialState={productInitialState}>
           <LanguageSelector />
           <LanguageView />
-          <FilterComponent />
-          <ProductList />
         </ProductProvider>
       </FilterProvider>
     </LanguageProvider>
