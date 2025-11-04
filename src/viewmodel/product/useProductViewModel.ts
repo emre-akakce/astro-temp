@@ -2,25 +2,26 @@
 import { useProductContext } from './ProductContext';
 import { useFilterViewModel } from '../filter/useFilterViewModel';
 import { getProducts } from '../../repositories/productRepository';
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useCallback } from 'react';
 import {
-  increment as incrementAction,
-  decrement as decrementAction,
   setProductsLoading as setProductsLoadingAction,
   setProducts as setProductsAction,
 } from './productActions';
+import { getEventMap } from './eventMapper';
 
 export const useProductViewModel = () => {
   const { state, dispatch } = useProductContext();
   const { selectedFilter } = useFilterViewModel(); // Consume the filter viewmodel
+  const eventMap = getEventMap(dispatch);
 
-  const increment = () => {
-    dispatch(incrementAction());
-  };
-
-  const decrement = () => {
-    dispatch(decrementAction());
-  };
+  const dispatchEvent = useCallback((eventName: keyof typeof eventMap, payload: any) => {
+    const eventAction = eventMap[eventName];
+    if (eventAction) {
+      eventAction(payload);
+    } else {
+      console.warn(`No event action found for event: ${eventName}`);
+    }
+  }, [eventMap]);
 
   // Fetch products whenever the selected filter changes
   useEffect(() => {
@@ -49,8 +50,7 @@ export const useProductViewModel = () => {
 
   return {
     count: state.count,
-    increment,
-    decrement,
+    dispatchEvent,
     products: state.products,
     productsLoading: state.productsLoading,
   };
