@@ -4,7 +4,7 @@ import { useFilterViewModel } from '../../viewmodel/filter/useFilterViewModel';
 import type { Filter } from '../../model/filter';
 
 const FilterComponent: React.FC = () => {
-  const { availableFilters, selectedFilter, setSelectedFilter, filtersLoading } = useFilterViewModel();
+  const { availableFilters, selectedFilter, dispatchEvent, filtersLoading } = useFilterViewModel();
 
   if (filtersLoading) {
     return <div style={{ marginBottom: '20px' }}>Loading filters...</div>;
@@ -16,7 +16,7 @@ const FilterComponent: React.FC = () => {
       {availableFilters.map((filter: Filter) => (
         <button
           key={filter.id}
-          onClick={() => setSelectedFilter(filter.value)}
+          onClick={() => dispatchEvent('SET_SELECTED_FILTER', filter.value)}
           style={{
             marginRight: '10px',
             padding: '8px 15px',

@@ -4,16 +4,22 @@ import { getFilters } from '../../repositories/filterRepository';
 import { useEffect, useCallback } from 'react';
 import {
   setAvailableFilters as setAvailableFiltersAction,
-  setSelectedFilter as setSelectedFilterAction,
   setFiltersLoading as setFiltersLoadingAction,
 } from './filterActions';
+import { getEventMap } from './eventMapper';
 
 export const useFilterViewModel = () => {
   const { state, dispatch } = useFilterContext();
+  const eventMap = getEventMap(dispatch);
 
-  const setSelectedFilter = useCallback((filterValue: string) => {
-    dispatch(setSelectedFilterAction(filterValue));
-  }, [dispatch]);
+  const dispatchEvent = useCallback((eventName: keyof typeof eventMap, payload: any) => {
+    const eventAction = eventMap[eventName];
+    if (eventAction) {
+      eventAction(payload);
+    } else {
+      console.warn(`No event action found for event: ${eventName}`);
+    }
+  }, [eventMap]);
 
   // Fetch available filters on mount
   useEffect(() => {
@@ -34,7 +40,7 @@ export const useFilterViewModel = () => {
   return {
     availableFilters: state.availableFilters,
     selectedFilter: state.selectedFilter,
-    setSelectedFilter,
+    dispatchEvent,
     filtersLoading: state.filtersLoading,
   };
 };

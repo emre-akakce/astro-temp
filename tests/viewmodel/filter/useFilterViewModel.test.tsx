@@ -73,7 +73,7 @@ describe('viewmodel/filter - useFilterViewModel', () => {
 
     // Select a filter
     act(() => {
-      hookResult.setSelectedFilter('cat1');
+      hookResult.dispatchEvent('SET_SELECTED_FILTER', 'cat1');
     });
 
     // Assert that the selected filter is updated
