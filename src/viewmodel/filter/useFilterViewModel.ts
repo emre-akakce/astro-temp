@@ -7,9 +7,11 @@ import {
   setFiltersLoading as setFiltersLoadingAction,
 } from './filterActions';
 import { getEventMap } from './eventMapper';
+import { useLanguageViewModel } from '../language/useLanguageViewModel';
 
 export const useFilterViewModel = () => {
   const { state, dispatch } = useFilterContext();
+  const { language } = useLanguageViewModel(); // Get the language
   const eventMap = getEventMap(dispatch);
 
   const dispatchEvent = useCallback((eventName: keyof typeof eventMap, payload: any) => {
@@ -21,21 +23,22 @@ export const useFilterViewModel = () => {
     }
   }, [eventMap]);
 
-  // Fetch available filters on mount
+  const fetchFilters = async (lang: string) => {
+    dispatch(setFiltersLoadingAction(true));
+    try {
+      const filters = await getFilters(lang);
+      dispatch(setAvailableFiltersAction(filters));
+    } catch (error) {
+      console.error('Failed to fetch filters:', error);
+    } finally {
+      dispatch(setFiltersLoadingAction(false));
+    }
+  };
+
+  // Fetch available filters on mount and when language changes
   useEffect(() => {
-    const fetchFilters = async () => {
-      dispatch(setFiltersLoadingAction(true));
-      try {
-        const filters = await getFilters();
-        dispatch(setAvailableFiltersAction(filters));
-      } catch (error) {
-        console.error('Failed to fetch filters:', error);
-      } finally {
-        dispatch(setFiltersLoadingAction(false));
-      }
-    };
-    fetchFilters();
-  }, [dispatch]);
+    fetchFilters(language);
+  }, [language, dispatch]);
 
   return {
     availableFilters: state.availableFilters,
