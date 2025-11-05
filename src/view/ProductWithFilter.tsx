@@ -7,13 +7,13 @@ import LanguageView from './LanguageView';
 import { useLanguageViewModel } from '../viewmodel/language/useLanguageViewModel';
 
 const LanguageSelector: React.FC = () => {
-  const { setLanguage } = useLanguageViewModel();
+  const { dispatchEvent } = useLanguageViewModel();
 
   return (
     <div>
-      <button onClick={() => setLanguage('en')}>English</button>
-      <button onClick={() => setLanguage('tr')}>Turkish</button>
-      <button onClick={() => setLanguage('uae')}>UAE</button>
+      <button onClick={() => dispatchEvent('CHANGE_LANGUAGE', 'en')}>English</button>
+      <button onClick={() => dispatchEvent('CHANGE_LANGUAGE', 'tr')}>Turkish</button>
+      <button onClick={() => dispatchEvent('CHANGE_LANGUAGE', 'uae')}>UAE</button>
     </div>
   );
 };

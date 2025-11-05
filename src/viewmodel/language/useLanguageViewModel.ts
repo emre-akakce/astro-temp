@@ -1,8 +1,7 @@
-// src/viewmodel/language/useLanguageViewModel.ts
-import { useContext } from 'react';
+import { useContext, useCallback } from 'react';
 import { LanguageContext } from './LanguageContext';
-import { setLanguage } from './languageActions';
 import { viewMap } from 'src/services/viewMap';
+import { getEventMap } from './eventMapper';
 
 export const useLanguageViewModel = () => {
   const context = useContext(LanguageContext);
@@ -11,6 +10,16 @@ export const useLanguageViewModel = () => {
   }
 
   const { state, dispatch } = context;
+  const eventMap = getEventMap(dispatch);
+
+  const dispatchEvent = useCallback((eventName: keyof typeof eventMap, payload: any) => {
+    const eventAction = eventMap[eventName];
+    if (eventAction) {
+      eventAction(payload);
+    } else {
+      console.warn(`No event action found for event: ${eventName}`);
+    }
+  }, [eventMap]);
 
   const getView = (viewName: string) => {
     const view = viewMap(viewName, state.language);
@@ -20,6 +29,6 @@ export const useLanguageViewModel = () => {
   return {
     language: state.language,
     getView,
-    setLanguage: (language: string) => dispatch(setLanguage(language)),
+    dispatchEvent,
   };
 };
