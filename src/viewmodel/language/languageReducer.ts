@@ -1,5 +1,5 @@
 // src/viewmodel/language/languageReducer.ts
-import { SET_LANGUAGE, LANGUAGE_UPDATED } from './languageActions';
+import { CHANGE_LANGUAGE, LANGUAGE_UPDATED } from './languageActions';
 
 export interface LanguageState {
   language: string;
@@ -8,7 +8,7 @@ export interface LanguageState {
 
 export const languageReducer = (state: LanguageState, action: any) => {
   switch (action.type) {
-    case SET_LANGUAGE:
+    case CHANGE_LANGUAGE:
       return {
         ...state,
         language: action.payload,
