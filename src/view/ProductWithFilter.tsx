@@ -5,15 +5,16 @@ import { allProducts } from 'src/repositories/productRepository';
 import { LanguageProvider } from '../viewmodel/language/LanguageContext';
 import LanguageView from './LanguageView';
 import { useLanguageViewModel } from '../viewmodel/language/useLanguageViewModel';
+import { CHANGE_LANGUAGE } from 'src/viewmodel/language/languageActions';
 
 const LanguageSelector: React.FC = () => {
   const { dispatchEvent } = useLanguageViewModel();
 
   return (
     <div>
-      <button onClick={() => dispatchEvent('CHANGE_LANGUAGE', 'en')}>English</button>
-      <button onClick={() => dispatchEvent('CHANGE_LANGUAGE', 'tr')}>Turkish</button>
-      <button onClick={() => dispatchEvent('CHANGE_LANGUAGE', 'uae')}>UAE</button>
+      <button onClick={() => dispatchEvent(CHANGE_LANGUAGE, 'en')}>English</button>
+      <button onClick={() => dispatchEvent(CHANGE_LANGUAGE, 'tr')}>Turkish</button>
+      <button onClick={() => dispatchEvent(CHANGE_LANGUAGE, 'uae')}>UAE</button>
     </div>
   );
 };
