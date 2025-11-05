@@ -1,10 +1,8 @@
-// src/view/product/tr/ProductList.tsx
 import React from 'react';
-import type { Product } from 'src/model/product';
-import { useProductViewModel } from 'src/viewmodel/product/useProductViewModel';
+import { useProductViewModel } from '../../../viewmodel/product/useProductViewModel';
+import type { Product } from '../../../model/product';
 
-
-const ProductList: React.FC = () => {
+const ProductView: React.FC = () => {
   const { count, dispatchEvent, products, productsLoading } = useProductViewModel();
 
   return (
@@ -30,4 +28,4 @@ const ProductList: React.FC = () => {
   );
 };
 
-export default ProductList;
+export default ProductView;

@@ -5,6 +5,7 @@ import { describe, it, expect } from 'vitest';
 import { useProductViewModel } from '../../../src/viewmodel/product/useProductViewModel';
 import { ProductProvider } from '../../../src/viewmodel/product/ProductContext';
 import { FilterProvider } from '../../../src/viewmodel/filter/FilterContext';
+import { LanguageProvider } from 'src/viewmodel/language/LanguageContext';
 
 describe('useProductViewModel (Component Integration Simplified)', () => {
   it('returns the correct runtime shape when called inside a component', async () => {
@@ -26,11 +27,13 @@ describe('useProductViewModel (Component Integration Simplified)', () => {
 
     await act(async () => {
       render(
-        <ProductProvider initialState={productInitialState}>
-          <FilterProvider>
-            <TestComponent />
-          </FilterProvider>
-        </ProductProvider>
+        <LanguageProvider initialState={{ language: 'en' }}>
+          <ProductProvider initialState={productInitialState}>
+            <FilterProvider>
+              <TestComponent />
+            </FilterProvider>
+          </ProductProvider>
+        </LanguageProvider>
       );
     });
 
@@ -53,11 +56,13 @@ describe('useProductViewModel (Component Integration Simplified)', () => {
 
     await act(async () => {
       render(
-        <ProductProvider initialState={productInitialState}>
-          <FilterProvider>
-            <TestComponent />
-          </FilterProvider>
-        </ProductProvider>
+        <LanguageProvider initialState={{ language: 'en' }}>
+          <ProductProvider initialState={productInitialState}>
+            <FilterProvider>
+              <TestComponent />
+            </FilterProvider>
+          </ProductProvider>
+        </LanguageProvider>
       );
     });
 
