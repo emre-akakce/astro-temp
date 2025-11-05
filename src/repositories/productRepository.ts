@@ -17,7 +17,7 @@ export const allProducts = (lang = 'en'): Product[] => {
 export const getProducts = async (filterValue: string, lang = 'en'): Promise<Product[]> => {    
   return new Promise((resolve) => {
     setTimeout(() => {
-      if (!filterValue || filterValue === 'all') {
+      if (!filterValue || filterValue === translations[lang].all) {
         resolve(allProducts(lang));
       } else {
         const lowerCaseFilter = filterValue.toLowerCase();
