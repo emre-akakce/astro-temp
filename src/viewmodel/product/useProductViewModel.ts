@@ -13,7 +13,7 @@ import { useLanguageViewModel } from '../language/useLanguageViewModel';
 export const useProductViewModel = () => {
   const { state, dispatch } = useProductContext();
   const { selectedFilter } = useFilterViewModel(); // Consume the filter viewmodel
-  const { language } = useLanguageViewModel();
+  const { language, languageUpdated } = useLanguageViewModel();
   const eventMap = getEventMap(dispatch);
 
   const dispatchEvent = useCallback((eventName: keyof typeof eventMap, payload: any) => {
@@ -38,9 +38,9 @@ export const useProductViewModel = () => {
   };
   
 
-  // Fetch products whenever the selected filter changes
+  // Fetch products whenever the selected filter or lang. changes
   useEffect(() => {   
-    if (selectedFilter) { // Only fetch if a filter is selected
+    if (selectedFilter || languageUpdated) {
       fetchProducts();
     }
   }, [selectedFilter, dispatch]); // Depend on selectedFilter from the filter viewmodel

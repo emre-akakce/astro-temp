@@ -28,6 +28,7 @@ export const useLanguageViewModel = () => {
 
   return {
     language: state.language,
+    languageUpdated: state.languageUpdated,
     getView,
     dispatchEvent,
   };

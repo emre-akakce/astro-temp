@@ -27,7 +27,7 @@ const ProductWithFilter: React.FC = (props: {language: string}) => {
   };
   
   return (
-    <LanguageProvider initialState={{ language: props.language }} >
+    <LanguageProvider initialState={{ language: props.language, languageUpdated: false }} >
       <FilterProvider>
         <ProductProvider initialState={productInitialState}>
           <LanguageSelector />
