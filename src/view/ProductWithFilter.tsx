@@ -17,9 +17,9 @@ const LanguageSelector: React.FC = () => {
     </div>
   );
 };
-const defaultLanguage = 'en';
-const ProductWithFilter: React.FC = () => {
-  const products = allProducts(defaultLanguage);
+
+const ProductWithFilter: React.FC = (props: {language: string}) => {
+  const products = allProducts(props.language);
   const productInitialState = {
     count: 0,
     products: products,
@@ -27,7 +27,7 @@ const ProductWithFilter: React.FC = () => {
   };
   
   return (
-    <LanguageProvider initialState={{ language: defaultLanguage }} >
+    <LanguageProvider initialState={{ language: props.language }} >
       <FilterProvider>
         <ProductProvider initialState={productInitialState}>
           <LanguageSelector />

@@ -7,6 +7,9 @@ import "/Users/emrekardaslar/Desktop/Workspace/Self/component-library/dist/css/h
 import "/Users/emrekardaslar/Desktop/Workspace/Self/component-library/dist/css/badge.css";
 import "/Users/emrekardaslar/Desktop/Workspace/Self/component-library/dist/css/price.css"; */
 //import "/Users/emrekardaslar/Desktop/Workspace/Self/component-library/dist/cjs/components/ProductList/ProductList.css";
+
+// Get language from url parameter
+const language = Astro.url.searchParams.get("lang") || "en";
 ---
 
 <html lang="en">
@@ -19,7 +22,7 @@ import "/Users/emrekardaslar/Desktop/Workspace/Self/component-library/dist/css/p
 	</head>
 	<body>
 		<h1>Astro MVVM React Example</h1>
-		<ProductWithFilter client:load />
+		<ProductWithFilter client:load {...({ language } as any)} />
 		<!-- <ComponentLibraryView client:load /> -->
 	</body>
 </html>
