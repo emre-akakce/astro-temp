@@ -8,10 +8,12 @@ import {
   setProducts as setProductsAction,
 } from './productActions';
 import { getEventMap } from './eventMapper';
+import { useLanguageViewModel } from '../language/useLanguageViewModel';
 
 export const useProductViewModel = () => {
   const { state, dispatch } = useProductContext();
   const { selectedFilter } = useFilterViewModel(); // Consume the filter viewmodel
+  const { language } = useLanguageViewModel();
   const eventMap = getEventMap(dispatch);
 
   const dispatchEvent = useCallback((eventName: keyof typeof eventMap, payload: any) => {
@@ -28,7 +30,7 @@ export const useProductViewModel = () => {
     const fetchProducts = async () => {
       dispatch(setProductsLoadingAction(true));
       try {
-        const products = await getProducts(selectedFilter); // Use selectedFilter from filter viewmodel
+        const products = await getProducts(selectedFilter, language); // Use selectedFilter from filter viewmodel
         dispatch(setProductsAction(products));
       } catch (error) {
         console.error('Failed to fetch products:', error);

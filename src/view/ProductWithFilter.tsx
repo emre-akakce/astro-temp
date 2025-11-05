@@ -17,16 +17,17 @@ const LanguageSelector: React.FC = () => {
     </div>
   );
 };
-
+const defaultLanguage = 'en';
 const ProductWithFilter: React.FC = () => {
+  const products = allProducts(defaultLanguage);
   const productInitialState = {
     count: 0,
-    products: allProducts,
+    products: products,
     productsLoading: false,
   };
   
   return (
-    <LanguageProvider>
+    <LanguageProvider initialState={{ language: defaultLanguage }} >
       <FilterProvider>
         <ProductProvider initialState={productInitialState}>
           <LanguageSelector />
