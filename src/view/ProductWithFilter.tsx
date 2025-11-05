@@ -5,28 +5,30 @@ import { allProducts } from 'src/repositories/productRepository';
 import { LanguageProvider } from '../viewmodel/language/LanguageContext';
 import LanguageView from './LanguageView';
 import { useLanguageViewModel } from '../viewmodel/language/useLanguageViewModel';
+import { CHANGE_LANGUAGE } from 'src/viewmodel/language/languageActions';
 
 const LanguageSelector: React.FC = () => {
-  const { setLanguage } = useLanguageViewModel();
+  const { dispatchEvent } = useLanguageViewModel();
 
   return (
     <div>
-      <button onClick={() => setLanguage('en')}>English</button>
-      <button onClick={() => setLanguage('tr')}>Turkish</button>
-      <button onClick={() => setLanguage('uae')}>UAE</button>
+      <button onClick={() => dispatchEvent(CHANGE_LANGUAGE, 'en')}>English</button>
+      <button onClick={() => dispatchEvent(CHANGE_LANGUAGE, 'tr')}>Turkish</button>
+      <button onClick={() => dispatchEvent(CHANGE_LANGUAGE, 'uae')}>UAE</button>
     </div>
   );
 };
 
-const ProductWithFilter: React.FC = () => {
+const ProductWithFilter: React.FC = (props: {language: string}) => {
+  const products = allProducts(props.language);
   const productInitialState = {
     count: 0,
-    products: allProducts,
+    products: products,
     productsLoading: false,
   };
   
   return (
-    <LanguageProvider>
+    <LanguageProvider initialState={{ language: props.language, languageUpdated: false }} >
       <FilterProvider>
         <ProductProvider initialState={productInitialState}>
           <LanguageSelector />

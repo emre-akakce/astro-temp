@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFilterViewModel } from '../../../viewmodel/filter/useFilterViewModel';
 import type { Filter } from '../../../model/filter';
+import { SET_SELECTED_FILTER } from 'src/viewmodel/filter/filterActions';
 
 const FilterView: React.FC = () => {
   const { availableFilters, selectedFilter, dispatchEvent, filtersLoading } = useFilterViewModel();
@@ -15,7 +16,7 @@ const FilterView: React.FC = () => {
       {availableFilters.map((filter: Filter) => (
         <button
           key={filter.id}
-          onClick={() => dispatchEvent('SET_SELECTED_FILTER', filter.value)}
+          onClick={() => dispatchEvent(SET_SELECTED_FILTER, filter.value)}
           style={{
             marginRight: '10px',
             padding: '8px 15px',

@@ -8,10 +8,12 @@ import {
   setProducts as setProductsAction,
 } from './productActions';
 import { getEventMap } from './eventMapper';
+import { useLanguageViewModel } from '../language/useLanguageViewModel';
 
 export const useProductViewModel = () => {
   const { state, dispatch } = useProductContext();
   const { selectedFilter } = useFilterViewModel(); // Consume the filter viewmodel
+  const { language, languageUpdated } = useLanguageViewModel();
   const eventMap = getEventMap(dispatch);
 
   const dispatchEvent = useCallback((eventName: keyof typeof eventMap, payload: any) => {
@@ -23,21 +25,22 @@ export const useProductViewModel = () => {
     }
   }, [eventMap]);
 
-  // Fetch products whenever the selected filter changes
-  useEffect(() => {
-    const fetchProducts = async () => {
-      dispatch(setProductsLoadingAction(true));
-      try {
-        const products = await getProducts(selectedFilter); // Use selectedFilter from filter viewmodel
-        dispatch(setProductsAction(products));
-      } catch (error) {
-        console.error('Failed to fetch products:', error);
-      } finally {
-        dispatch(setProductsLoadingAction(false));
-      }
-    };
+  const fetchProducts = async () => {
+    dispatch(setProductsLoadingAction(true));
+    try {
+      const products = await getProducts(selectedFilter, language); // Use selectedFilter from filter viewmodel
+      dispatch(setProductsAction(products));
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+    } finally {
+      dispatch(setProductsLoadingAction(false));
+    }
+  };
+  
 
-    if (selectedFilter) { // Only fetch if a filter is selected
+  // Fetch products whenever the selected filter or lang. changes
+  useEffect(() => {   
+    if (selectedFilter || languageUpdated) {
       fetchProducts();
     }
   }, [selectedFilter, dispatch]); // Depend on selectedFilter from the filter viewmodel
